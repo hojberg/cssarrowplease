@@ -1,0 +1,3 @@
+describe("CSSArrowPlease.ArrowPreviewView", function() {
+
+});

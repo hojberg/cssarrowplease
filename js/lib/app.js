@@ -1,7 +1,7 @@
-// create global InpaySupport if it doesn't exist
-if (!('InpaySupport' in window)) window.InpaySupport = {};
+// create global CSSArrowPlease if it doesn't exist
+if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
-(function (I) {
+(function (G) {
 
   // ----- Application ----- //
 
@@ -36,7 +36,7 @@ if (!('InpaySupport' in window)) window.InpaySupport = {};
       var view = this.currentView;
 
       if (view === 'SearchView') {
-        new I.SearchView({
+        new G.SearchView({
           container: $('.search')
         });
       } 
@@ -45,6 +45,6 @@ if (!('InpaySupport' in window)) window.InpaySupport = {};
   };
 
   // Expose
-  I.App = App;
+  G.App = App;
 
-}(window.InpaySupport));
+}(window.CSSArrowPlease));

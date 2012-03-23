@@ -45,5 +45,3 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
   G.ArrowCSSView = ArrowCSSView;
 
 }(window.CSSArrowPlease));
-
-

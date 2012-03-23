@@ -3,53 +3,109 @@
   <head>
     <meta charset='utf-8' />
     <title>cssarrowplease</title>
+    <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/app.css" />
-    <link rel="stylesheet" type="text/css" href="css/arrow.css" />
+
+    <script type='text/template' class='arrow_css_template'>
+      .arrow_box { color: #fff; position: relative;
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .arrow_box:after, .arrow_box:before {
+        border: solid transparent;
+        content: ' ';
+        height: 0;
+        bottom: 100%;
+        position: absolute;
+        width: 0;
+      }
+
+      .arrow_box:after {
+        border-width: 12px;
+        border-bottom-color: #7297e7;
+        left: 50%;
+        margin-left: -12px;
+      }
+
+      .arrow_box:before {
+        border-width: 14px;
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+        left: 50%;
+        margin-left: -14px;
+      }
+    </script>
   </head>
   <body>
 
-    <header></header>
-
     <div class='canvas'>
 
-      <div class='arrow_box top'>
-        css arrow please!
+      <div class='preview'>
+        <style class='preview_styles'></style>
+        <div class='arrow_box'>
+          css arrow please!
+        </div>
       </div>
 
     </div>
 
     <div id='content'>
+      <h1>Arrow configuration</h1>
 
-      <form class='configuration'>
-        <ol>
-          <li>
-            <label>arrow position</label>
-            <select>
-              <option selected='selected' value='top'>Top</option>
-              <option value='right'>Right</option>
-              <option value='bottom'>Bottom</option>
-              <option value='left'>Left</option>
-            </select>
-          </li>
-          <li>
-            <label>arrow position</label>
-          </li>
-        </ol>
-      </form>
+      <div class='clr'>
+        <form class='configuration'>
+          <ol>
+            <li>
+              <label>Position</label>
+              <select class='position'>
+                <option value='top'>Top</option>
+                <option value='right'>Right</option>
+                <option value='bottom'>Bottom</option>
+                <option value='left'>Left</option>
+              </select>
+            </li>
+            <li>
+              <label>Size</label>
+              <input class='size' />
+            </li>
+            <li>
+              <label>Color</label>
+              <input class='color' />
+            </li>
+            <li>
+              <label>Border</label>
+              Width: <input class='border_width' />
+              Color: <input class='border_color' />
+            </li>
+          </ol>
+        </form>
 
-      <code class='result_code'>
-        .arrow_box { position: relative; }
-      </code>
+        <code class='result_code'>
+          .arrow_box { position: relative; }
+        </code>
+      </div>
 
     </div>
 
     <footer id='footer'>
-      Build by <a href='http://icreateui.com'>Simon Højberg</a>
+      By <a href='http://icreateui.com'>Simon Højberg</a>
       &middot;
       Follow me on twitter: <a href='https://twitter.com/shojberg'>@shojberg</a>
+      &middot;
+      Checkout the source on <a href='https://github.com/hojberg/cssarrowplease'>github</a>
     </footer>
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+    <script src='js/lib/models/arrow.js'></script>
+    <script src='js/lib/views/arrow_configuration_view.js'></script>
+    <script src='js/lib/views/arrow_preview_view.js'></script>
+    <script src='js/lib/views/arrow_css_view.js'></script>
     <script src='js/lib/app.js'></script>
+    <script>
+      $(document).ready(function () {
+        new CSSArrowPlease.App().render();
+      });
+    </script>
   </body>
 </html>

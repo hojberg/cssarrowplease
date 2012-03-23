@@ -18,6 +18,11 @@ describe("CSSArrowPlease.Arrow", function () {
       expect( CSSArrowPlease.Arrow.ATTRS ).toBeDefined();
     });
 
+    it('responds to getAttrs with all the attributes', function () {
+      expect( arrow.getAttrs ).toBeFunction();
+      expect( arrow.getAttrs() ).toBe(arrow._attributes);
+    });
+
     it('has a "toCSS" method', function () {
       expect( arrow.toCSS ).toBeFunction();
     });
@@ -35,7 +40,6 @@ describe("CSSArrowPlease.Arrow", function () {
         beforeEach(function () {
           $arrow = arrow._$self;
         });
-
 
         it('has an "on" method', function () {
           expect( arrow.on ).toBeFunction();

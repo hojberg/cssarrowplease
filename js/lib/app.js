@@ -19,27 +19,29 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
   App.prototype = {
 
     init: function () {
-      this.currentView = '';
-
-      this.dispatch();
+      this.model = new G.Arrow();
+      this._initViews();
     },
 
-    dispatch: function () {
-      if ($('.search').length > 0) {
-        this.currentView = 'SearchView';
-      }
+    /**
+    @method _initViews
+    @description initializes views
+    @protected
+    **/
+    _initViews: function () {
+      var model = this.model;
 
-      this.showView();
+      this.views = [
+        new G.ArrowConfigurationView({ model: model, container: $('.configuration') }), 
+        new G.ArrowPreviewView({ model: model, container: $('.preview') }), 
+        new G.ArrowCSSView({ model: model, container: $('.result_code') }), 
+      ];
     },
 
-    showView: function () {
-      var view = this.currentView;
-
-      if (view === 'SearchView') {
-        new G.SearchView({
-          container: $('.search')
-        });
-      } 
+    render: function () {
+      $.each(this.views, function (i, view) {
+        view.render();
+      });
     }
 
   };

@@ -14,13 +14,18 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
   Arrow.prototype = {
 
     init: function () {
-      // jquerify this 
+      // jquerify 'this'
       this._$self = $(this);
 
-      this._addAttrs();
+      this._createAttrs();
     },
 
-    _addAttrs: function () {
+    /**
+    @method _createAttrs
+    @description creates attributes from the ATTR constant
+    @protected
+    **/
+    _createAttrs: function () {
       var ATTRS       = Arrow.ATTRS,
           attributes  = {};
 
@@ -31,18 +36,46 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       this._attributes = attributes;
     },
 
-    get: function (attr) {
-      attr = this._attributes[attr];
-      return attr;
+    /**
+    @method getAttrs
+    @description returns all the attributes
+    @returns {Object} all the model attributes
+    **/
+    getAttrs: function () {
+      return this._attributes;
     },
 
+    /**
+    @method get
+    @description returns the provided attribute
+    @param {String} attr the attribute to return
+    @returns {?} the attribute
+    **/
+    get: function (attr) {
+      return this._attributes[attr];
+    },
+
+    /**
+    @method set
+    @description updates the provided attribute
+    @param {String} attr the attribute to update
+    @param {?} val the value to update with
+    **/
     set: function (attr, val) {
       if (!(attr in this._attributes)) return;
 
-      this._attributes[attr] = 'val';
+      this._attributes[attr] = val;
       this.fire('change');
     },
 
+    /**
+    @method on
+    @description adds event listeners
+    @note uses jQuery custom events under the hood
+    @param {String} evType the event type
+    @param {Function} callback the event handler
+    @param {Object} context the 'this' for the callback
+    **/
     on: function (evType, callback, context) {
       var $self = this._$self;
 
@@ -52,6 +85,12 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       );
     },
 
+    /**
+    @method fire
+    @description trigger event
+    @note uses jQuery custom events under the hood
+    @param {String} evType the event type
+    **/
     fire: function (evType) {
       var $self = this._$self;
 
@@ -59,19 +98,20 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     },
 
     toCSS: function () {
-      return 'WOOT';
+      return $('.arrow_css_template').text();
     }
 
   };
 
   Arrow.ATTRS = {
-    position: 'top',
-    color:    '#fff',
-    border:   {color: '#000', thickness: '2px'}
+    position:     'top',
+    size:         10,
+    color:        '#fff',
+    borderWidth:  5,
+    borderColor:  '#000'
   };
 
   // Expose
   G.Arrow = Arrow;
 
 }(window.CSSArrowPlease));
-

@@ -58,7 +58,8 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '}\n';
       css += '.arrow_box:after';
       
-      if (hasBorder) css += ', .arrow_box:before {\n';
+      if (hasBorder)  css += ', .arrow_box:before {\n';
+      else            css += ' {\n';
 
       css += '\t' + iPos +': 100%;\n';
 
@@ -127,11 +128,18 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _arrowBorderCSS: function () {
-      return this._arrowCSS(
-        this.get('borderColor'),
-        this.get('size') + (this.get('borderWidth') * 2),
-        'before'
-      );
+      var css = '',
+          borderWidth = this.get('borderWidth');
+      
+      if (borderWidth > 0) {
+        css = this._arrowCSS(
+          this.get('borderColor'),
+          this.get('size') + (borderWidth * 2),
+          'before'
+        );
+      }
+
+      return css;
     },
 
     /**

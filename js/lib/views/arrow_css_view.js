@@ -35,7 +35,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @chainable
     **/
     render: function () {
-      this.container.html(this.model.toCSS());
+      this.container.text( this.model.toCSS() );
       return this;
     }
 

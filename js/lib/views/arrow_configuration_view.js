@@ -22,11 +22,26 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
     /**
     @method render
-    @description TODO
     @chainable
     **/
     render: function () {
+      this._setDefaults();
       return this;
+    },
+
+    /**
+    @method _setDetaults
+    @description update the view with the model defaults
+    **/
+    _setDefaults: function () {
+      var container = this.container,
+          model     = this.model;
+
+      container.find('.position').val( model.get('position') );
+      container.find('.size').val( model.get('size') );
+      container.find('.color').val( model.get('color') );
+      container.find('.border_width').val( model.get('borderWidth') );
+      container.find('.border_color').val( model.get('borderColor') );
     },
 
     /**
@@ -65,6 +80,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
         attr = target.attr('class');
       }
 
+      if (attr === 'borderWidth' || attr === 'size') val = parseInt(val, 10);
       this.model.set(attr, val);
     }
 

@@ -16,15 +16,17 @@ describe("CSSArrowPlease.ArrowPreviewView", function() {
       expect( arrowPreviewView.render() ).toBe( arrowPreviewView );
     });
 
-    it('renders the preview with the correct arrow when render is called', function () {
-      expect( $container.find('.preview_styles').text() ).toBe('');
+    it('render delegates to ArrowCSSView.render', function () {
+      spyOn(CSSArrowPlease.ArrowCSSView.prototype, 'render');
+
       arrowPreviewView.render();
-      expect( $container.find('.preview_styles').text() ).toBe(arrow.toCSS());
+
+      expect(CSSArrowPlease.ArrowCSSView.prototype.render).toHaveBeenCalled();
     });
   });
 
   describe('update', function () {
-    it('renders an updated preview when the model changes', function () {
+    it('calls render on model changes', function () {
       spyOn(arrowPreviewView, 'render');
       arrow.fire('change');
       expect(arrowPreviewView.render).toHaveBeenCalled();

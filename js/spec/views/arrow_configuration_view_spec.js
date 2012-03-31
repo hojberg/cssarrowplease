@@ -31,6 +31,17 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
       expect( arrowConfigurationView.render() ).toBe( arrowConfigurationView );
     });
 
+    it('sets the default valus', function () {
+      arrowConfigurationView.render();
+
+      expect( $container.find('.position').val() ).toBe(arrow.get('position'));
+      expect( parseInt($container.find('.size').val(), 10) ).toBe(arrow.get('size'));
+      expect( $container.find('.color').val() ).toBe(arrow.get('color'));
+      expect( parseInt($container.find('.border_width').val(), 10) ).toBe(arrow.get('borderWidth'));
+      expect( $container.find('.border_color').val() ).toBe(arrow.get('borderColor'));
+
+    });
+
     describe('sync from dom to model', function () {
 
       it('syncs when position dropdown is changed', function () {
@@ -40,7 +51,7 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
 
       it('syncs when size is changed', function () {
         $container.find('.size').val('40').trigger('change');
-        expect( arrow.get('size') ).toEqual('40');
+        expect( arrow.get('size') ).toEqual(40);
       });
 
       it('syncs when color is changed', function () {
@@ -50,7 +61,7 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
 
       it('syncs when border width is changed', function () {
         $container.find('.border_width').val('20').trigger('change');
-        expect( arrow.get('borderWidth') ).toEqual('20');
+        expect( arrow.get('borderWidth') ).toEqual(20);
       });
 
       it('syncs when border color is changed', function () {

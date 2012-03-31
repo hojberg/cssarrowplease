@@ -33,7 +33,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
       this.views = [
         new G.ArrowConfigurationView({ model: model, container: $('.configuration') }), 
-        new G.ArrowPreviewView({ model: model, container: $('.preview') }), 
+        new G.ArrowPreviewView({ model: model, container: $('.preview_styles') }), 
         new G.ArrowCSSView({ model: model, container: $('.result_code') }), 
       ];
     },

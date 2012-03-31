@@ -31,19 +31,11 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
     /**
     @method render
-    @description 
-      renders an arrow using the 
-      model configuration
+    @description borrows the render function from ArrowCSSView
     @chainable
     **/
     render: function () {
-      var model     = this.model,
-          container = this.container;
-
-      container.find('.preview_styles').text(
-        model.toCSS()
-      );
-
+      G.ArrowCSSView.prototype.render.call(this);
       return this;
     }
 

@@ -18,8 +18,9 @@ describe("CSSArrowPlease.ArrowCSSView", function () {
     });
 
     it('renders the css when render is called', function () {
+      expect( $container.text() ).toBe( '' );
       arrowCSSView.render();
-      expect( $container.html() ).toBe( arrow.toCSS() );
+      expect( $container.text() ).toBe( arrow.toCSS() );
     });
   });
 

@@ -39,7 +39,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
       container.find('.position').val( model.get('position') );
       container.find('.size').val( model.get('size') );
-      container.find('.color').val( model.get('color') );
+      container.find('.base_color').val( model.get('color') );
       container.find('.border_width').val( model.get('borderWidth') );
       container.find('.border_color').val( model.get('borderColor') );
     },
@@ -75,6 +75,9 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       }
       else if (target.hasClass('border_color')) {
         attr = 'borderColor';
+      }
+      else if (target.hasClass('base_color')) {
+        attr = 'color';
       }
       else {
         attr = target.attr('class');

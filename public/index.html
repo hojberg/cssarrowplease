@@ -38,7 +38,7 @@
               </li>
               <li>
                 <label>Color</label>
-                <input class='color' />
+                <input class='base_color color {hash:true,caps:false}' />
               </li>
             </ol>
             <ol class='section'>
@@ -49,7 +49,7 @@
               </li>
               <li>
                 <label>Border color</label>
-                <input class='border_color' />
+                <input class='border_color color {hash:true,caps:false}' />
               </li>
             </ol>
           </div>
@@ -67,6 +67,8 @@
     </footer>
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+    <script type="text/javascript" src="js/vendor/jscolor/jscolor.js"></script>
+
     <script src='js/lib/models/arrow.js'></script>
     <script src='js/lib/views/arrow_configuration_view.js'></script>
     <script src='js/lib/views/arrow_preview_view.js'></script>

@@ -31,23 +31,24 @@ h2                            { margin: 0; margin-bottom: 10px; padding: 0; font
 /* =MODULES
 ====================================================== */
 /* preview */
-.arrow_box                    { padding: 40px; width: 280px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+.arrow_box                    { padding: 40px; width: 280px; height: 100px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
 
 /* logo */
 .logo                         { color: #ddf8c6; text-align: center; font-size: 54px; line-height: 54px; font-weight: bold; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
 
 /* configuration */
-.configuration                { margin-top: 15px; }
+.configuration                { margin-top: 20px; }
 .configuration .section       { float: left; width: 195px; }
 .configuration .section li    { margin-bottom: 5px; }
 .configuration .section label { display: inline-block; width: 100px; }
 
 .configuration .size,
-.configuration .border_width  { width: 30px; }
+.configuration .border_width  { width: 25px; text-align: right; }
 
 .configuration .color,
 .configuration .border_color  { width: 60px; }
 
-/* result_code */
-.result_code                  { resize: none; border: 0; padding: 10px; float: right; width: 380px; height: 370px; font-size: 12px; font-family: 'Courier new'; font-weight: bold; background: rgba(0, 0, 0, 0.15); border-radius: 4px; color: #fff; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 0, 0, 0.2); }
+.configuration .unit          { font-size: 14px; }
 
+/* result_code */
+.result_code                  { white-space: pre; padding: 10px; float: right; width: 380px; height: 370px; font-size: 12px; font-family: 'Courier new'; font-weight: bold; background: rgba(0, 0, 0, 0.15); border-radius: 4px; color: #fff; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 0, 0, 0.2); box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.3), inset 0 1px 5px rgba(0, 0, 0, 0.1); }

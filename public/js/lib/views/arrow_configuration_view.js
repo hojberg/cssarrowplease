@@ -54,7 +54,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
           container         = this.container,
           selectors         = [ '.position',
                                 '.size',
-                                '.color',
+                                '.base_color',
                                 '.border_width',
                                 '.border_color'
                               ];

@@ -1,0 +1,11 @@
+{
+  "name": "cssarrowplease",
+  "domains": "cssarrowplease.com",
+  "description": "Generate the CSS for a tooltip arrow",
+  "repository": "git://github.com/hojberg/cssarrowplease.git",
+  "author": "Simon Højberg <r.hackr@gmail.com> (http://icreateui.com)",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "~2.0.3"
+  }
+}

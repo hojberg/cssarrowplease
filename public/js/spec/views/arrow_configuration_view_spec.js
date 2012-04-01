@@ -9,7 +9,7 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
                       <option value='left'>left</option>\
                     </select>\
                     <input class='size'>\
-                    <input class='color'>\
+                    <input class='base_color'>\
                     <input class='border_width'>\
                     <input class='border_color'>\
                   </div>";
@@ -36,7 +36,7 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
 
       expect( $container.find('.position').val() ).toBe(arrow.get('position'));
       expect( parseInt($container.find('.size').val(), 10) ).toBe(arrow.get('size'));
-      expect( $container.find('.color').val() ).toBe(arrow.get('color'));
+      expect( $container.find('.base_color').val() ).toBe(arrow.get('color'));
       expect( parseInt($container.find('.border_width').val(), 10) ).toBe(arrow.get('borderWidth'));
       expect( $container.find('.border_color').val() ).toBe(arrow.get('borderColor'));
 
@@ -55,7 +55,7 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
       });
 
       it('syncs when color is changed', function () {
-        $container.find('.color').val('#0f0').trigger('change');
+        $container.find('.base_color').val('#0f0').trigger('change');
         expect( arrow.get('color') ).toEqual('#0f0');
       });
 

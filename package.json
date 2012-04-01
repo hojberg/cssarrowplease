@@ -1,18 +1,38 @@
 {
   "name": "cssarrowplease",
-  "domains": "cssarrowplease.com",
+  "version": "0.2.0",
+  "author": {
+    "name": "Simon Højberg",
+    "email": "r.hackr@gmail.com"
+  },
   "description": "Generate the CSS for a tooltip arrow",
-  "repository": "git://github.com/hojberg/cssarrowplease.git",
-  "author": "Simon Højberg <r.hackr@gmail.com> (http://icreateui.com)",
-  "version": "0.0.1",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hojberg/cssarrowplease.git"
+  },
+  "keywords": [
+    "nodeapps",
+    "helloworld"
+  ],
+  "homepage": "http://cssarrowplease.com/",
   "scripts": {
-    "start": "node server.js"
+    "start": "node ./bin/server"
   },
   "dependencies": {
     "connect": "~2.0.3"
   },
-  "subdomain": "cssarrowplease",
+  "devDependencies": {},
   "engines": {
-    "node": "0.6.x"
-  }
+    "node": ">=0.6"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/hojberg/cssarrowplease/raw/master/LICENSE"
+    }
+  ],
+  "analyze": false,
+  "optionalDependencies": {},
+  "subdomain": "cssarrowplease"
 }

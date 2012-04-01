@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "assetgraph-builder": "latest"
-  }
+  },
   "engines": {
     "node": ">=0.6"
   },

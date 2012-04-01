@@ -1,0 +1,15 @@
+.jscolor .saturation .pad {
+    background: url('hs.png') no-repeat;
+}
+
+.jscolor .value .pad {
+    background: url('hv.png') no-repeat;
+}
+
+.jscolor .cross {
+    background: url('cross.gif') no-repeat;
+}
+
+.jscolor .arrow {
+    background: url('arrow.gif') no-repeat;
+}

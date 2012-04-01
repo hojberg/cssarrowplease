@@ -239,10 +239,10 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
   Arrow.ATTRS = {
     position:     'top',
-    size:         10,
-    color:        '#8ebf37',
-    borderWidth:  1,
-    borderColor:  '#4d710d'
+    size:         30,
+    color:        '#88b7d5',
+    borderWidth:  4,
+    borderColor:  '#c2e1f5'
   };
 
   // Expose

@@ -596,6 +596,7 @@ var jscolor = {
 			var p = jscolor.picker;
 
 			// controls interaction
+			p.box.className = modeID ? 'value' : 'saturation';
 			p.box.onmouseup =
 			p.box.onmouseout = function() { target.focus(); };
 			p.box.onmousedown = function() { abortBlur=true; };
@@ -637,6 +638,7 @@ var jscolor = {
 			p.box.style.height = dims[1] + 'px';
 
 			// picker border
+			p.boxB.className = 'jscolor';
 			p.boxB.style.position = 'absolute';
 			p.boxB.style.clear = 'both';
 			p.boxB.style.left = x+'px';
@@ -647,6 +649,7 @@ var jscolor = {
 			p.boxB.style.background = THIS.pickerFaceColor;
 
 			// pad image
+			p.pad.className = 'pad';
 			p.pad.style.width = jscolor.images.pad[0]+'px';
 			p.pad.style.height = jscolor.images.pad[1]+'px';
 
@@ -658,6 +661,7 @@ var jscolor = {
 			p.padB.style.borderColor = THIS.pickerInsetColor;
 
 			// pad mouse area
+			p.padM.className = 'cross';
 			p.padM.style.position = 'absolute';
 			p.padM.style.left = '0';
 			p.padM.style.top = '0';
@@ -679,6 +683,7 @@ var jscolor = {
 			p.sldB.style.borderColor = THIS.pickerInsetColor;
 
 			// slider mouse area
+			p.sldM.className = 'arrow';
 			p.sldM.style.display = THIS.slider ? 'block' : 'none';
 			p.sldM.style.position = 'absolute';
 			p.sldM.style.right = '0';
@@ -717,19 +722,6 @@ var jscolor = {
 				THIS.hidePicker();
 			};
 			p.btnS.style.lineHeight = p.btn.style.height;
-
-			// load images in optimal order
-			switch(modeID) {
-				case 0: var padImg = 'hs.png'; break;
-				case 1: var padImg = 'hv.png'; break;
-			}
-			p.padM.style.backgroundImage = "url('"+jscolor.getDir()+"cross.gif')";
-			p.padM.style.backgroundRepeat = "no-repeat";
-			p.sldM.style.backgroundImage = "url('"+jscolor.getDir()+"arrow.gif')";
-			p.sldM.style.backgroundRepeat = "no-repeat";
-			p.pad.style.backgroundImage = "url('"+jscolor.getDir()+padImg+"')";
-			p.pad.style.backgroundRepeat = "no-repeat";
-			p.pad.style.backgroundPosition = "0 0";
 
 			// place pointers
 			redrawPad();
@@ -917,14 +909,6 @@ var jscolor = {
 				color : styleElement.style.color
 			};
 		}
-
-		// require images
-		switch(modeID) {
-			case 0: jscolor.requireImage('hs.png'); break;
-			case 1: jscolor.requireImage('hv.png'); break;
-		}
-		jscolor.requireImage('cross.gif');
-		jscolor.requireImage('arrow.gif');
 
 		this.importColor();
 	}

@@ -5,6 +5,12 @@
   "repository": "git://github.com/hojberg/cssarrowplease.git",
   "author": "Simon Højberg <r.hackr@gmail.com> (http://icreateui.com)",
   "version": "0.0.1",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engine": {
+    "node": ">=0.6"
+  },
   "dependencies": {
     "connect": "~2.0.3"
   }

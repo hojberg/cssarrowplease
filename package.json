@@ -8,10 +8,11 @@
   "scripts": {
     "start": "node server.js"
   },
-  "engine": {
-    "node": ">=0.6"
-  },
   "dependencies": {
     "connect": "~2.0.3"
+  },
+  "subdomain": "cssarrowplease",
+  "engines": {
+    "node": "0.6.x"
   }
 }

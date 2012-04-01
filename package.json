@@ -36,5 +36,9 @@
   ],
   "analyze": false,
   "optionalDependencies": {},
-  "subdomain": "cssarrowplease"
+  "subdomain": "cssarrowplease",
+  "domains": [
+    "cssarrowplease.com",
+    "www.cssarrowplease.com"
+  ]
 }

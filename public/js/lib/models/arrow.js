@@ -68,6 +68,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '\theight: 0;\n';
       css += '\twidth: 0;\n';
       css += '\tposition: absolute;\n';
+      css += '\tpointer-events: none;\n';
 
       css += '}\n';
 

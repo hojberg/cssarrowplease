@@ -245,7 +245,7 @@ describe("CSSArrowPlease.Arrow", function () {
 
         expect( arrow._arrowCSS ).toHaveBeenCalledWith( 
           arrow.get('borderColor'),
-          arrow.get('size') + (arrow.get('borderWidth') * 1.41421356),
+          arrow.get('size') + Math.round(arrow.get('borderWidth') * 1.41421356),
           'before'
         );
       });

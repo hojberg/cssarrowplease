@@ -68,6 +68,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '\theight: 0;\n';
       css += '\twidth: 0;\n';
       css += '\tposition: absolute;\n';
+      css += '\tpointer-events: none;\n';
 
       css += '}\n';
 
@@ -134,7 +135,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       if (borderWidth > 0) {
         css = this._arrowCSS(
           this.get('borderColor'),
-          this.get('size') + (borderWidth * 2),
+          this.get('size') + (borderWidth * 1.41421356), // cos(PI/4) * 2
           'before'
         );
       }

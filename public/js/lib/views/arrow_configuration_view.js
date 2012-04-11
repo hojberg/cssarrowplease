@@ -51,16 +51,20 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     **/
     _attachEvents: function () {
       var _updateModelProxy = $.proxy( this._updateModel, this),
+          _updateInputProxy = $.proxy( this._updateInput, this),
           container         = this.container,
-          selectors         = [ '.position',
-                                '.size',
-                                '.base_color',
-                                '.border_width',
-                                '.border_color'
+          selectors         = [ { classname: '.position',      keyboard_interactive: false },
+                                { classname: '.size',          keyboard_interactive: true },
+                                { classname: '.base_color',    keyboard_interactive: false },
+                                { classname: '.border_width',  keyboard_interactive: true },
+                                { classname: '.border_color',  keyboard_interactive: false }
                               ];
 
       $.each(selectors, function (i, selector) {
-        container.delegate(selector, 'change', _updateModelProxy);
+        container.delegate(selector.classname, 'change', _updateModelProxy);
+        if (selector.keyboard_interactive) {
+          container.delegate(selector.classname, 'keydown', _updateInputProxy);
+        }
       });
     },
 
@@ -85,6 +89,18 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
       if (attr === 'borderWidth' || attr === 'size') val = parseInt(val, 10);
       this.model.set(attr, val);
+    },
+
+    _updateInput: function (ev) {
+      if (ev.keyCode != 38 && ev.keyCode != 40) return;
+
+      var target    = $(ev.currentTarget),
+          val       = parseInt(target.val()),
+          increment = ev.keyCode == 38 ? 1 : -1,
+          multiply  = ev.shiftKey ? 10 : 1
+
+      target.val(val + increment * multiply);
+      this._updateModel(ev)
     }
 
   };

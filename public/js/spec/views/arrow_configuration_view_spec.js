@@ -69,6 +69,34 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
         expect( arrow.get('borderColor') ).toEqual('#f00');
       });
 
+      it('increases or decreases value accordingly when arrows are pressed', function() {
+        var objects = [
+              { selector: '.size', arrowAttr: 'size', defaultVal: 30 },
+              { selector: '.border_width', arrowAttr: 'borderWidth', defaultVal: 4 }
+            ],
+            keystrokes = [
+              { key: 38, increment: 1, shift: false },
+              { key: 38, increment: 10, shift: true },
+              { key: 40, increment: -1, shift: false },
+              { key: 40, increment: -10, shift: true }
+            ];
+
+        $.each(objects, function (i, object) {
+          var elem = $container.find(object.selector),
+              defaultVal = object.defaultVal,
+              arrowAttr = object.arrowAttr;
+
+          $.each(keystrokes, function (i, keystroke) {
+            var keydown = $.Event('keydown')
+            keydown.keyCode = keystroke.key;
+            keydown.shiftKey = keystroke.shift;
+
+            elem.val(defaultVal).trigger(keydown);
+            expect( arrow.get(arrowAttr) ).toEqual(defaultVal + keystroke.increment);
+          });
+        });
+      });
+
     });
   });
 

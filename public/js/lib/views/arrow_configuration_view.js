@@ -97,7 +97,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       var target    = $(ev.currentTarget),
           val       = parseInt(target.val()),
           increment = ev.keyCode == 38 ? 1 : -1,
-          multiply  = ev.shiftKey ? 10 : 1
+          multiply  = ev.shiftKey ? 10 : 1,
           newVal    = val + increment * multiply;
 
       if (newVal < 0) newVal = 0;

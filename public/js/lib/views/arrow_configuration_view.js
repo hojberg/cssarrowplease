@@ -37,7 +37,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       var container = this.container,
           model     = this.model;
 
-      container.find('.position').val( model.get('position') );
+      container.find('.position').val([ model.get('position') ]);
       container.find('.size').val( model.get('size') );
       container.find('.base_color').val( model.get('color') );
       container.find('.border_width').val( model.get('borderWidth') );

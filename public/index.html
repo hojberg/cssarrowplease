@@ -20,33 +20,33 @@
         <form class='configuration'>
           <h2>Arrow configuration</h2>
           <div class='clr'>
-            <ol class='section'>
+            <ol class='section positions'>
               <li>
                 <label>Position</label>
-                <select class='position'>
-                  <option value='top'>Top</option>
-                  <option value='right'>Right</option>
-                  <option value='bottom'>Bottom</option>
-                  <option value='left'>Left</option>
-                </select>
-              </li>
-              <li>
-                <label>Size</label>
-                <input class='size' /><span class='unit'>px</span>
-              </li>
-              <li>
-                <label>Color</label>
-                <input class='base_color color {hash:true,caps:false}' />
+                <label><input type="radio" name="position" value="top"    class="position" /> Top</label>
+                <label><input type="radio" name="position" value="right"  class="position" /> Right</label>
+                <label><input type="radio" name="position" value="bottom" class="position" /> Bottom</label>
+                <label><input type="radio" name="position" value="left"   class="position" /> Left</label>
               </li>
             </ol>
             <ol class='section'>
               <li>
-                <label>Border width</label>
-                <input class='border_width' /><span class='unit'>px</span>
+                <label for='size'>Size</label>
+                <input class='size' id='size' /><span class='unit'>px</span>
               </li>
               <li>
-                <label>Border color</label>
-                <input class='border_color color {hash:true,caps:false}' />
+                <label for='color'>Color</label>
+                <input class='base_color color {hash:true,caps:false}' id='color' />
+              </li>
+            </ol>
+            <ol class='section'>
+              <li>
+                <label for='border_width'>Border width</label>
+                <input class='border_width' id='border_width' /><span class='unit'>px</span>
+              </li>
+              <li>
+                <label for='border_color'>Border color</label>
+                <input class='border_color color {hash:true,caps:false}' id='border_color' />
               </li>
             </ol>
           </div>

@@ -87,12 +87,15 @@ describe("CSSArrowPlease.ArrowConfigurationView", function () {
               arrowAttr = object.arrowAttr;
 
           $.each(keystrokes, function (i, keystroke) {
-            var keydown = $.Event('keydown')
+            var keydown = $.Event('keydown'),
+                expectedVal = defaultVal + keystroke.increment;
             keydown.keyCode = keystroke.key;
             keydown.shiftKey = keystroke.shift;
 
             elem.val(defaultVal).trigger(keydown);
-            expect( arrow.get(arrowAttr) ).toEqual(defaultVal + keystroke.increment);
+
+            if (expectedVal < 0) expectedVal = 0;
+            expect( arrow.get(arrowAttr) ).toEqual(expectedVal);
           });
         });
       });

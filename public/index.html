@@ -93,26 +93,26 @@
 
       (function() {
         var defer = (function (document, script) {
-            var urls = [],
-                firstScript = document.getElementsByTagName(script)[0];
+          var urls = [],
+              firstScript = document.getElementsByTagName(script)[0];
 
-            return function (url, callback) {
-              var inc;
+          return function (url, callback) {
+            var inc;
 
-              if (url && urls.indexOf(url) === -1) {
-                inc = document.createElement(script);
-                inc.async = true;
-                inc.src = url;
-                inc.onload = callback || function () {};
-                firstScript.parentNode.insertBefore(inc, firstScript);
-              }
+            if (url && $.inArray(url, urls) === -1) {
+              inc = document.createElement(script);
+              inc.async = true;
+              inc.src = url;
+              inc.onload = callback || function () {};
+              firstScript.parentNode.insertBefore(inc, firstScript);
             }
-          }(document, 'script'));
+          }
+        }(document, 'script'));
 
-          window.onload = function () {
-              defer(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
-              defer('//platform.twitter.com/widgets.js');
-          };
+        window.onload = function () {
+          defer(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
+          defer('//platform.twitter.com/widgets.js');
+        };
       })();
     </script>
   </body>

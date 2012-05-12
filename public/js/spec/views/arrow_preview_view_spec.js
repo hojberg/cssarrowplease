@@ -18,7 +18,7 @@ describe("CSSArrowPlease.ArrowPreviewView", function() {
 
     it('render delegates to ArrowCSSView.render', function () {
       arrowPreviewView.render();
-      expect( $container.text() ).toBe( arrow.toCSS() );
+      expect( $container.text().replace(/\s+/g, '') ).toBe( arrow.toCSS().replace(/\s+/g, '') );
     });
   });
 

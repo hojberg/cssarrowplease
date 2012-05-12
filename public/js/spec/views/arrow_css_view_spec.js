@@ -29,7 +29,7 @@ describe("CSSArrowPlease.ArrowCSSView", function () {
     it('renders the css when render is called', function () {
       expect( $code.text() ).toBe( '' );
       arrowCSSView.render();
-      expect( $code.text() ).toBe( arrow.toCSS() );
+      expect( $code.text().replace(/\s+/g, '') ).toBe( arrow.toCSS().replace(/\s+/g, '') );
     });
 
     it('calls clippy() on the copy_code node', function () {

@@ -17,11 +17,8 @@ describe("CSSArrowPlease.ArrowPreviewView", function() {
     });
 
     it('render delegates to ArrowCSSView.render', function () {
-      spyOn(CSSArrowPlease.ArrowCSSView.prototype, 'render');
-
       arrowPreviewView.render();
-
-      expect(CSSArrowPlease.ArrowCSSView.prototype.render).toHaveBeenCalled();
+      expect( $container.text() ).toBe( arrow.toCSS() );
     });
   });
 

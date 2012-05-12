@@ -15,8 +15,10 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
     init: function (options) {
       this.container  = options.container;
-      this.model      = options.model;
+      this._codeNode  = this.container.find('.code');
+      this._copyNode  = this.container.find('.copy_code');
 
+      this.model = options.model;
       this.model.on('change', this._handleChange, this);
     },
 
@@ -35,7 +37,12 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @chainable
     **/
     render: function () {
-      this.container.text( this.model.toCSS() );
+      var css = this.model.toCSS();
+
+      this._codeNode.text( css );
+      this._copyNode.text( css )
+        .clippy({ transparent: true });
+
       return this;
     }
 

@@ -23,7 +23,7 @@
     "connect": "~2.0.3"
   },
   "devDependencies": {
-    "assetgraph-builder": "latest"
+    "assetgraph-builder": ">=0.2.37"
   },
   "engines": {
     "node": ">=0.6"

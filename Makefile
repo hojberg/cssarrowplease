@@ -4,6 +4,7 @@ public-min: public/index.html $(deps)
 	node_modules/assetgraph-builder/bin/buildProduction \
 	    --root public \
 	    --outroot public-min \
+	    --optimizepngs \
 	    $<
 
 PHONY: clean

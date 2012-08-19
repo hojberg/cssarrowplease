@@ -87,20 +87,29 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     _arrowCSS: function (color, size, layer) {
       var pos       = this.get('position'),
           iPos      = this.invertedPosition(),
+          adjustment= 0,
           css       = ".arrow_box:";
 
       layer = layer || 'after';
 
+      if(layer === 'after' && pos === 'top') {
+          adjustment = 1;
+      }
+
       css += layer + ' {\n';
 
       css += '\tborder-' + iPos + '-color: ' + color + ';\n';
-      css += '\tborder-width: ' + size + 'px;\n';
+      css += '\tborder-width: ' + (size + adjustment) + 'px;\n';
 
       if (pos === 'top' || pos === 'bottom') {
-        css += '\tleft: 50%;\n\tmargin-left: -' + size + 'px;\n';
+        css += '\tleft: 50%;\n\tmargin-left: -' + (size + adjustment) + 'px;\n';
       }
       else {
         css += '\ttop: 50%;\n\tmargin-top: -' + size + 'px;\n';
+      }
+
+      if (adjustment) {
+          css += '\ttop: ' + (0 - ((size * 2) + 1)) + 'px;\n';
       }
 
       css += '}';

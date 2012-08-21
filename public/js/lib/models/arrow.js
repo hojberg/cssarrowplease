@@ -43,6 +43,8 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @returns {Array}
     **/
     hexToRGB: function (h) {
+      if ( typeof h !== 'string' || !h.match(/^#([0-9A-F]{3}$)|([0-9A-F]{6}$)/i) ) return [0, 0, 0];
+      else if ( h.match(/^(#[0-9a-f]{3})$/i) ) h = '#' + h[1] + h[1] + h[2] + h[2] + h[3] + h[3];
       var rgb = [],
           i = 1;
 

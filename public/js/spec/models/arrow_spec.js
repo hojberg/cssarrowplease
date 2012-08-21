@@ -96,6 +96,30 @@ describe("CSSArrowPlease.Arrow", function () {
 
   });
 
+  describe('convert hex color to rgb color', function () {
+
+    it('converts "#888"', function () {
+      expect( arrow.hexToRGB('#888') ).toEqual([136 , 136 , 136]);
+    });
+
+    it('converts "#88B7D5"', function () {
+      expect( arrow.hexToRGB('#88B7D5') ).toEqual([136, 183, 213]);
+    });
+
+    it('converts "#C2E1F5"', function () {
+      expect( arrow.hexToRGB('#C2E1F5') ).toEqual([194, 225, 245]);
+    });
+
+    it('returns [0, 0, 0] if there is no input color', function () {
+      expect( arrow.hexToRGB() ).toEqual([0, 0, 0]);
+    });
+
+    it('returns [0, 0, 0] if the input color is invalid', function () {
+      expect( arrow.hexToRGB('invalid') ).toEqual([0, 0, 0]);
+    });
+
+  });
+
   describe('toCSS', function () {
 
     describe('baseCSS', function () {
@@ -177,8 +201,9 @@ describe("CSSArrowPlease.Arrow", function () {
       });
 
       it('it has the correct color', function () {
-        var expected = 'border-bottom-color: #888';
-        expect( arrow._arrowCSS('#888', 20) ).toMatch( expected );
+        var css = arrow._arrowCSS('#888', 20);
+        expect( css ).toMatch( 'border-bottom-color: #888' );
+        expect( css ).toMatch( 'border-color: rgba\\(136, 136, 136, 0\\)' );
       });
 
       describe('position top', function () {

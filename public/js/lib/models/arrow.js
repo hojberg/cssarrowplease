@@ -37,6 +37,24 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     },
 
     /**
+    @method hexToRGB
+    @description 
+      returns an rgb color from an hex color
+    @returns {Array}
+    **/
+    hexToRGB: function (h) {
+      if ( typeof h !== 'string' || !h.match(/^#([0-9A-F]{3}$)|([0-9A-F]{6}$)/i) ) return [0, 0, 0];
+      else if ( h.match(/^(#[0-9a-f]{3})$/i) ) h = '#' + h[1] + h[1] + h[2] + h[2] + h[3] + h[3];
+      var rgb = [],
+          i = 1;
+
+      for(; i < 6; i+=2) {
+        rgb.push(parseInt(h.substring(i, i + 2), 16));
+      }
+      return rgb;
+    },
+
+    /**
     @method _baseCSS
     @description generates the base css
     @returns {String} css
@@ -87,12 +105,14 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     _arrowCSS: function (color, size, layer) {
       var pos       = this.get('position'),
           iPos      = this.invertedPosition(),
+          rgbColor  = this.hexToRGB(color),
           css       = ".arrow_box:";
 
       layer = layer || 'after';
 
       css += layer + ' {\n';
 
+      css += '\tborder-color: rgba(' + rgbColor.join(', ') + ', 0);\n';
       css += '\tborder-' + iPos + '-color: ' + color + ';\n';
       css += '\tborder-width: ' + size + 'px;\n';
 

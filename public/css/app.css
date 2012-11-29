@@ -58,15 +58,4 @@ input[type='radio']           { border: 0; }
 
 
 /* fork_me */
-.fork_me                          { position: absolute; top: 0; right: 0; display: block; width: 149px; height: 149px; background: url(../img/fork.png);
-  opacity: 0.7;
-  -webkit-transition: all 0.2s ease-in;
-     -moz-transition: all 0.2s ease-in;
-          transition: all 0.2s ease-in;
-}
-.fork_me:hover { 
-  opacity: 1; 
-  -webkit-transform: scale(1.03);
-     -moz-transform: scale(1.03);
-          transform: scale(1.03);
-}
+.fork_me                          { position: absolute; top: 0; right: 0; display: block; width: 149px; height: 149px; background: url(../img/fork.png); }

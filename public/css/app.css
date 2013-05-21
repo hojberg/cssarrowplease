@@ -33,10 +33,12 @@ input[type='radio']           { border: 0; }
 ====================================================== */
 /* preview */
 .arrow_box                        { padding: 40px; width: 280px; height: 100px; border-radius: 6px; 
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  /*-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);*/
 
+  filter: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cfilter%20id%3D%27drop-shadow%27%3E%3CfeGaussianBlur%20in%3D%27SourceAlpha%27%20stdDeviation%3D%274%27%2F%3E%3CfeOffset%20dx%3D%270%27%20dy%3D%271%27%20result%3D%27offsetblur%27%2F%3E%3CfeFlood%20flood-color%3D%27rgba(0,0,0,0.3)%27%2F%3E%3CfeComposite%20in2%3D%27offsetblur%27%20operator%3D%27in%27%2F%3E%3CfeMerge%3E%3CfeMergeNode%2F%3E%3CfeMergeNode%20in%3D%27SourceGraphic%27%2F%3E%3C%2FfeMerge%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#drop-shadow");
   -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
+  
 }
 
 /* logo */

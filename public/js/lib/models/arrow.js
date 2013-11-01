@@ -96,7 +96,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '\tposition: absolute;\n';
       css += '\tpointer-events: none;\n';
 
-      css += '}\n';
+      if(hasBorder) css += '}\n';
 
       return css;
     },
@@ -111,14 +111,15 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _arrowCSS: function (color, size, layer) {
-      var pos       = this.get('position'),
-          iPos      = this.invertedPosition(),
-          rgbColor  = this.hexToRGB(color),
-          css       = ".arrow_box:";
+      var pos         = this.get('position'),
+          iPos        = this.invertedPosition(),
+          rgbColor    = this.hexToRGB(color),
+          borderWidth = this.get('borderWidth'),
+          css         = "";
 
       layer = layer || 'after';
 
-      css += layer + ' {\n';
+      if(borderWidth > 0) css += '.arrow_box:' + layer + ' {\n';
 
       css += '\tborder-color: rgba(' + rgbColor.join(', ') + ', 0);\n';
       css += '\tborder-' + iPos + '-color: ' + color + ';\n';
@@ -184,7 +185,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
         this._arrowBorderCSS()
       ];
 
-      return css.join('\n');
+      return css.join(css[2] ? '\n':'');
     },
 
     /**

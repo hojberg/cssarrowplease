@@ -61,7 +61,8 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _baseCSS: function () {
-      var iPos        = this.invertedPosition(),
+      var pos         = this.get('position'),
+          iPos        = this.invertedPosition(),
           color       = this.get('color'),
           borderWidth = this.get('borderWidth'),
           borderColor = this.get('borderColor'),
@@ -80,6 +81,13 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       else            css += ' {\n';
 
       css += '\t' + iPos +': 100%;\n';
+
+      if (pos === 'top' || pos === 'bottom') {
+        css += '\tleft: 50%;\n';
+      }
+      else {
+        css += '\ttop: 50%;\n';
+      }
 
       css += '\tborder: solid transparent;\n';
       css += '\tcontent: " ";\n';
@@ -117,10 +125,10 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '\tborder-width: ' + size + 'px;\n';
 
       if (pos === 'top' || pos === 'bottom') {
-        css += '\tleft: 50%;\n\tmargin-left: -' + size + 'px;\n';
+        css += '\tmargin-left: -' + size + 'px;\n';
       }
       else {
-        css += '\ttop: 50%;\n\tmargin-top: -' + size + 'px;\n';
+        css += '\tmargin-top: -' + size + 'px;\n';
       }
 
       css += '}';

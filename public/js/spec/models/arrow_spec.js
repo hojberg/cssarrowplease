@@ -134,6 +134,7 @@ describe("CSSArrowPlease.Arrow", function () {
             expected;
 
         expected = '\tbottom: 100%;\n';
+        expected = '\tleft: 50%;\n';
         expected += '\tborder: solid transparent;\n';
         expected += '\tcontent: " ";\n';
         expected += '\theight: 0;\n';
@@ -210,9 +211,10 @@ describe("CSSArrowPlease.Arrow", function () {
         beforeEach(function () { arrow.set('position', 'top'); });
 
         it('is centered', function () {
-          var css = arrow._arrowCSS('red', 20);
-          expect( css ).toMatch( 'left: 50%' );
-          expect( css ).toMatch( 'margin-left: -20px' );
+          var arrowcss = arrow._arrowCSS('red', 20),
+              basecss = arrow._baseCSS();
+          expect( basecss ).toMatch( 'left: 50%' );
+          expect( arrowcss ).toMatch( 'margin-left: -20px' );
         });
       });
 
@@ -220,9 +222,10 @@ describe("CSSArrowPlease.Arrow", function () {
         beforeEach(function () { arrow.set('position', 'bottom'); });
 
         it('is centered', function () {
-          var css = arrow._arrowCSS('red', 20);
-          expect( css ).toMatch( 'left: 50%' );
-          expect( css ).toMatch( 'margin-left: -20px' );
+          var arrowcss = arrow._arrowCSS('red', 20),
+              basecss = arrow._baseCSS();
+          expect( basecss ).toMatch( 'left: 50%' );
+          expect( arrowcss ).toMatch( 'margin-left: -20px' );
         });
       });
 
@@ -230,9 +233,10 @@ describe("CSSArrowPlease.Arrow", function () {
         beforeEach(function () { arrow.set('position', 'right'); });
 
         it('is centered', function () {
-          var css = arrow._arrowCSS('red', 20);
-          expect( css ).toMatch( 'top: 50%' );
-          expect( css ).toMatch( 'margin-top: -20px' );
+          var arrowcss = arrow._arrowCSS('red', 20),
+              basecss = arrow._baseCSS();
+          expect( basecss ).toMatch( 'top: 50%' );
+          expect( arrowcss ).toMatch( 'margin-top: -20px' );
         });
       });
 
@@ -240,9 +244,10 @@ describe("CSSArrowPlease.Arrow", function () {
         beforeEach(function () { arrow.set('position', 'left'); });
 
         it('is centered', function () {
-          var css = arrow._arrowCSS('red', 20);
-          expect( css ).toMatch( 'top: 50%' );
-          expect( css ).toMatch( 'margin-top: -20px' );
+          var arrowcss = arrow._arrowCSS('red', 20),
+              basecss = arrow._baseCSS();
+          expect( basecss ).toMatch( 'top: 50%' );
+          expect( arrowcss ).toMatch( 'margin-top: -20px' );
         });
       });
 

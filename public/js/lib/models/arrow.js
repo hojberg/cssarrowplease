@@ -61,7 +61,8 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _baseCSS: function () {
-      var iPos        = this.invertedPosition(),
+      var pos         = this.get('position'),
+          iPos        = this.invertedPosition(),
           color       = this.get('color'),
           borderWidth = this.get('borderWidth'),
           borderColor = this.get('borderColor'),
@@ -81,6 +82,13 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
       css += '\t' + iPos +': 100%;\n';
 
+      if (pos === 'top' || pos === 'bottom') {
+        css += '\tleft: 50%;\n';
+      }
+      else {
+        css += '\ttop: 50%;\n';
+      }
+
       css += '\tborder: solid transparent;\n';
       css += '\tcontent: " ";\n';
       css += '\theight: 0;\n';
@@ -88,7 +96,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '\tposition: absolute;\n';
       css += '\tpointer-events: none;\n';
 
-      css += '}\n';
+      if(hasBorder) css += '}\n';
 
       return css;
     },
@@ -103,24 +111,25 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _arrowCSS: function (color, size, layer) {
-      var pos       = this.get('position'),
-          iPos      = this.invertedPosition(),
-          rgbColor  = this.hexToRGB(color),
-          css       = ".arrow_box:";
+      var pos         = this.get('position'),
+          iPos        = this.invertedPosition(),
+          rgbColor    = this.hexToRGB(color),
+          borderWidth = this.get('borderWidth'),
+          css         = "";
 
       layer = layer || 'after';
 
-      css += layer + ' {\n';
+      if(borderWidth > 0) css += '.arrow_box:' + layer + ' {\n';
 
       css += '\tborder-color: rgba(' + rgbColor.join(', ') + ', 0);\n';
       css += '\tborder-' + iPos + '-color: ' + color + ';\n';
       css += '\tborder-width: ' + size + 'px;\n';
 
       if (pos === 'top' || pos === 'bottom') {
-        css += '\tleft: 50%;\n\tmargin-left: -' + size + 'px;\n';
+        css += '\tmargin-left: -' + size + 'px;\n';
       }
       else {
-        css += '\ttop: 50%;\n\tmargin-top: -' + size + 'px;\n';
+        css += '\tmargin-top: -' + size + 'px;\n';
       }
 
       css += '}';
@@ -176,7 +185,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
         this._arrowBorderCSS()
       ];
 
-      return css.join('\n');
+      return css.join(css[2] ? '\n':'');
     },
 
     /**

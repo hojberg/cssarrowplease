@@ -1,18 +1,11 @@
 #!/usr/bin/env node
 
-var connect = require('connect'), 
+var connect = require('connect'),
     http    = require('http'),
-    port    = process.env.PORT || 3000,
+    port    = process.env.PORT || 1337,
     static;
 
-if (process.argv.indexOf('--development') !== -1) {
-  console.log('CSS Arrow Please in development on http://localhost:' + port);
-  static = connect.static('public');
-}
-else {
-  static = connect.static('public-min', { 
-    maxAge: 365 * 24 * 60 * 60 * 1000
-  });
-}
+console.log('CSS Arrow Please in development on http://localhost:' + port);
+static = connect.static('public');
 
 http.createServer( connect().use( static ) ).listen( port );

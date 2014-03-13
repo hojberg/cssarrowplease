@@ -11,10 +11,7 @@
     "type": "git",
     "url": "git://github.com/hojberg/cssarrowplease.git"
   },
-  "keywords": [
-    "nodeapps",
-    "helloworld"
-  ],
+  "keywords": [ "css", "arrow", "tooltip" ],
   "homepage": "http://cssarrowplease.com/",
   "scripts": {
     "start": "node ./bin/server"
@@ -23,10 +20,15 @@
     "connect": "~2.0.3"
   },
   "devDependencies": {
-    "assetgraph-builder": ">=0.2.37"
+    "grunt": "latest",
+    "grunt-contrib-watch": "~0.6.0",
+    "react-tools": "latest",
+    "grunt-react": "latest",
+    "grunt-browserify": "latest"
   },
   "engines": {
-    "node": ">=0.6"
+    "node": "0.8.x",
+    "npm": "1.1.x"
   },
   "licenses": [
     {

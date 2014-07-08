@@ -69,10 +69,15 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
           hasBorder   = borderWidth > 0,
           css         = '.arrow_box {\n';
 
+      color = this._sanitizeHexColors(color);
+
       css += '\tposition: relative;\n';
       css += '\tbackground: ' + color + ';\n';
 
-      if (hasBorder) css += '\tborder: ' + borderWidth + 'px solid ' + borderColor + ';\n';
+      if (hasBorder) {
+          borderColor = this._sanitizeHexColors(borderColor);
+          css += '\tborder: ' + borderWidth + 'px solid ' + borderColor + ';\n';
+      }
 
       css += '}\n';
       css += '.arrow_box:after';
@@ -111,6 +116,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _arrowCSS: function (color, size, layer) {
+      color = this._sanitizeHexColors(color);
       var pos         = this.get('position'),
           iPos        = this.invertedPosition(),
           rgbColor    = this.hexToRGB(color),
@@ -202,6 +208,16 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       });
 
       this._attributes = attributes;
+    },
+
+    /**
+    @method _sanitizeHexColors
+    @description prefix hexcolors with # if necessary
+    @returns {String} h
+    @protected
+    **/
+    _sanitizeHexColors: function(h) {
+        return (h.charAt(0)==='#')?h:'#' + h;
     },
 
     /**

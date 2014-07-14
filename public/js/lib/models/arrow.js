@@ -75,8 +75,8 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       css += '\tbackground: ' + color + ';\n';
 
       if (hasBorder) {
-          borderColor = this._sanitizeHexColors(borderColor);
-          css += '\tborder: ' + borderWidth + 'px solid ' + borderColor + ';\n';
+        borderColor = this._sanitizeHexColors(borderColor);
+        css += '\tborder: ' + borderWidth + 'px solid ' + borderColor + ';\n';
       }
 
       css += '}\n';
@@ -217,7 +217,7 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @protected
     **/
     _sanitizeHexColors: function(h) {
-        return (h.charAt(0)==='#')?h:'#' + h;
+      return (h.charAt(0)==='#')?h:'#' + h;
     },
 
     /**

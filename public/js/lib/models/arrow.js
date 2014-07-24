@@ -194,6 +194,165 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
       return css.join(css[2] ? '\n':'');
     },
 
+
+    /**
+    @method _baseLESS
+    @description generates the base less
+    @returns {String} less
+    @protected
+    **/
+    _baseLESS: function () {
+      var pos         = this.get('position'),
+          iPos        = this.invertedPosition(),
+          color       = this.get('color'),
+          borderWidth = this.get('borderWidth') + 'px',
+          borderColor = this.get('borderColor'),
+          size        = this.get('size') + 'px',
+          hasBorder   = parseInt(borderWidth) > 0,
+          less        = '@arrow_size : ' + size + ';\n';
+
+      less += '@arrow_color: ' + color + ';\n';
+      less += '@arrow_border_width : ' + borderWidth + ';\n';
+      less += '@arrow_border_color : ' + borderColor + ';\n\n';
+
+      less += '.arrow_box {\n';
+      less += '\tposition: relative;\n';
+      less += '\tbackground: @arrow_color;\n';
+
+      if (hasBorder) less += '\tborder: @arrow_border_width solid @arrow_border_color;\n';
+
+      less += '\t&:after';
+      
+      if (hasBorder)  less += ', &:before {\n';
+      else            less += ' {\n';
+
+      less += '\t\t' + iPos +': 100%;\n';
+      less += '\t\tborder: solid transparent;\n';
+      less += '\t\tcontent: " ";\n';
+      less += '\t\theight: 0;\n';
+      less += '\t\twidth: 0;\n';
+      less += '\t\tposition: absolute;\n';
+      less += '\t\tpointer-events: none;\n';
+      less += '\t}\n';
+
+      less += '\t&:after{\n';
+      less += '\t\tborder-color: hsla(hue(@arrow_color), saturation(@arrow_color), lightness(@arrow_color), 0);\n'
+      less += '\t\tborder-' + iPos + '-color: @arrow_color;\n';
+      less += '\t\tborder-width: @arrow_size;\n';
+      if (pos === 'top' || pos === 'bottom') {
+        less += '\t\tleft: 50%;\n\t\tmargin-left: -@arrow_size;\n';
+      }
+      else {
+        less += '\t\ttop: 50%;\n\t\tmargin-top: -@arrow_size;\n';
+      }
+      less += '\t}\n';
+
+
+      less += '\t&:before{\n';
+      less += '\t\tborder-color: hsla(hue(@arrow_border_color), saturation(@arrow_border_color), lightness(@arrow_border_color), 0);\n'
+      less += '\t\tborder-' + iPos + '-color: @arrow_border_color;\n';
+      less += '\t\tborder-width: (@arrow_size + round(@arrow_border_width * 1.41421356));\n';
+      if (pos === 'top' || pos === 'bottom') {
+        less += '\t\tleft: 50%;\n\t\tmargin-left: -(@arrow_size + round(@arrow_border_width * 1.41421356));\n';
+      }
+      else {
+        less += '\t\ttop: 50%;\n\t\tmargin-top: -(@arrow_size + round(@arrow_border_width * 1.41421356));\n';
+      }
+      less += '\t}\n';
+
+      less += '}\n';
+
+      return less;
+    },
+
+    /**
+    @method toLESS
+    @description returns a LESS representation of the arrow
+    @returns {String} less
+    **/
+    toLESS: function() {
+      return this._baseLESS();
+    },
+
+    /**
+    @method _baseSCSS
+    @description generates the base scss
+    @returns {String} scss
+    @protected
+    **/
+    _baseSCSS: function () {
+      var pos         = this.get('position'),
+          iPos        = this.invertedPosition(),
+          color       = this.get('color'),
+          borderWidth = this.get('borderWidth') + 'px',
+          borderColor = this.get('borderColor'),
+          size        = this.get('size') + 'px',
+          hasBorder   = parseInt(borderWidth) > 0,
+          scss        = '$arrow_size : ' + size + ';\n';
+
+      scss += '$arrow_color: ' + color + ';\n';
+      scss += '$arrow_border_width : ' + borderWidth + ';\n';
+      scss += '$arrow_border_color : ' + borderColor + ';\n\n';
+
+      scss += '.arrow_box {\n';
+      scss += '\tposition: relative;\n';
+      scss += '\tbackground: $arrow_color;\n';
+
+      if (hasBorder) scss += '\tborder: $arrow_border_width solid $arrow_border_color;\n';
+
+      scss += '\t&:after';
+      
+      if (hasBorder)  scss += ', &:before {\n';
+      else            scss += ' {\n';
+
+      scss += '\t\t' + iPos +': 100%;\n';
+      scss += '\t\tborder: solid transparent;\n';
+      scss += '\t\tcontent: " ";\n';
+      scss += '\t\theight: 0;\n';
+      scss += '\t\twidth: 0;\n';
+      scss += '\t\tposition: absolute;\n';
+      scss += '\t\tpointer-events: none;\n';
+      scss += '\t}\n';
+
+      scss += '\t&:after{\n';
+      scss += '\t\tborder-color: hsla(hue($arrow_color), saturation($arrow_color), lightness($arrow_color), 0);\n'
+      scss += '\t\tborder-' + iPos + '-color: $arrow_color;\n';
+      scss += '\t\tborder-width: $arrow_size;\n';
+      if (pos === 'top' || pos === 'bottom') {
+        scss += '\t\tleft: 50%;\n\t\tmargin-left: -$arrow_size;\n';
+      }
+      else {
+        scss += '\t\ttop: 50%;\n\t\tmargin-top: -$arrow_size;\n';
+      }
+      scss += '\t}\n';
+
+
+      scss += '\t&:before{\n';
+      scss += '\t\tborder-color: hsla(hue($arrow_border_color), saturation($arrow_border_color), lightness($arrow_border_color), 0);\n'
+      scss += '\t\tborder-' + iPos + '-color: $arrow_border_color;\n';
+      scss += '\t\tborder-width: ($arrow_size + round($arrow_border_width * 1.41421356));\n';
+      if (pos === 'top' || pos === 'bottom') {
+        scss += '\t\tleft: 50%;\n\t\tmargin-left: -($arrow_size + round($arrow_border_width * 1.41421356));\n';
+      }
+      else {
+        scss += '\t\ttop: 50%;\n\t\tmargin-top: -($arrow_size + round($arrow_border_width * 1.41421356));\n';
+      }
+      scss += '\t}\n';
+
+      scss += '}\n';
+
+      return scss;
+    },
+
+    /**
+    @method toSCSS
+    @description returns a SCSS representation of the arrow
+    @returns {String} scss
+    **/
+    toSCSS: function() {
+      return this._baseSCSS();
+    },
+
     /**
     @method _createAttrs
     @description creates attributes from the ATTR constant

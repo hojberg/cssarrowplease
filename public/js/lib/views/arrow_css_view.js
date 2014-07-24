@@ -20,7 +20,32 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
 
       this.model = options.model;
       this.model.on('change', this._handleChange, this);
+      this.output_type = 'css';
+      this._attachEvents();
     },
+
+    /**
+    @method _attachEvents
+    @description attaches dom events
+    @protected
+    **/
+    _attachEvents: function () {
+      $('.btn', this.container).click($.proxy(this._handleClick, this));
+    },
+
+    /**
+    @method _handleClick
+    @description handles click on output type CSS / LESS / SCSS
+    @chainable
+    **/
+    _handleClick: function (e) {
+      var target = $(e.target);
+      this.output_type = target.val();
+      $('.btn', this.container).removeClass('active');
+      target.addClass('active');
+      this.render();
+    },
+
 
     /**
     @method _handleChange
@@ -37,10 +62,19 @@ if (!('CSSArrowPlease' in window)) window.CSSArrowPlease = {};
     @chainable
     **/
     render: function () {
-      var css = this.model.toCSS();
 
-      this._codeNode.text( css );
-      this._copyNode.text( css )
+      var text;
+      switch(this.output_type){
+        case 'css':
+          text = this.model.toCSS(); break;
+        case 'less':
+          text = this.model.toLESS(); break;
+        case 'scss':
+          text = this.model.toSCSS(); break;
+      } 
+
+      this._codeNode.text( text );
+      this._copyNode.text( text )
         .clippy({ transparent: true });
 
       return this;

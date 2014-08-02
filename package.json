@@ -6,7 +6,6 @@
     "email": "r.hackr@gmail.com"
   },
   "description": "Generate the CSS for a tooltip arrow",
-  "main": "",
   "repository": {
     "type": "git",
     "url": "git://github.com/hojberg/cssarrowplease.git"
@@ -17,13 +16,10 @@
   ],
   "homepage": "http://cssarrowplease.com/",
   "scripts": {
-    "start": "node ./bin/server"
+    "start": "node ./server.js"
   },
   "dependencies": {
     "connect": "~2.0.3"
-  },
-  "devDependencies": {
-    "assetgraph-builder": ">=0.2.37"
   },
   "engines": {
     "node": ">=0.6"

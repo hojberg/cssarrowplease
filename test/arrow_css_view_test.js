@@ -1,5 +1,15 @@
-describe("CSSArrowPlease.ArrowCSSView", function () {
+var chai = require("chai");
+var sinon = require("sinon");
+var sinonChai = require("sinon-chai");
+var expect = chai.expect;
+chai.use(sinonChai);
 
+var $ = require('jquery');
+
+var Arrow = require('../app/models/arrow');
+var ArrowCSSView = require('../app/views/arrow_css_view');
+
+describe("ArrowCSSView", function () {
   var arrow, arrowCSSView, $container;
 
   beforeEach(function () {
@@ -7,14 +17,12 @@ describe("CSSArrowPlease.ArrowCSSView", function () {
     $code = $container.find('.code');
     $copy = $container.find('.copy_code');
 
-    arrow = new CSSArrowPlease.Arrow();
+    arrow = new Arrow();
 
-    arrowCSSView = new CSSArrowPlease.ArrowCSSView({
+    arrowCSSView = new ArrowCSSView({
       model:      arrow,
       container:  $container
     });
-
-    spyOn( $copy, 'clippy' );
 
     arrowCSSView._codeNode = $code;
     arrowCSSView._copyNode = $copy;
@@ -23,26 +31,22 @@ describe("CSSArrowPlease.ArrowCSSView", function () {
   describe('render', function () {
 
     it('returns itself for chainability', function () {
-      expect( arrowCSSView.render() ).toBe( arrowCSSView );
+      expect( arrowCSSView.render() ).to.eql( arrowCSSView );
     });
 
     it('renders the css when render is called', function () {
-      expect( $code.text() ).toBe( '' );
+      expect( $code.text() ).to.eql( '' );
       arrowCSSView.render();
-      expect( $code.text().replace(/\s+/g, '') ).toBe( arrow.toCSS().replace(/\s+/g, '') );
+      expect( $code.text().replace(/\s+/g, '') ).to.eql( arrow.toCSS().replace(/\s+/g, '') );
     });
 
-    it('calls clippy() on the copy_code node', function () {
-      arrowCSSView.render();
-      expect( $copy.clippy ).toHaveBeenCalled();
-    });
   });
 
   describe('update', function () {
     it('renders the css when the arrow is changed', function () {
-      spyOn(arrowCSSView, 'render');
+      var spy = sinon.spy(arrowCSSView, 'render');
       arrow.fire('change');
-      expect(arrowCSSView.render).toHaveBeenCalled();
+      expect(spy).to.have.been.called;
     });
   });
 

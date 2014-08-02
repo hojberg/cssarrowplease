@@ -54,8 +54,6 @@ input[type='radio']           { border: 0; }
 /* css_result */
 .css_result                       { position: relative; float: right; width: 402px; }
 .css_result .code                 { white-space: pre; padding: 10px; display: block; width: 380px; font-size: 12px; font-family: 'Courier new'; font-weight: bold; background: #8c9196; background: rgba(0, 0, 0, 0.15); border-radius: 4px; color: #fff; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); border: 1px solid #696d72; border-color: rgba(0, 0, 0, 0.2); box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.3), inset 0 1px 5px rgba(0, 0, 0, 0.1); }
-.css_result .copy_code            { position: absolute; bottom: 5px; right: 10px; width: 14px; height: 22px; background: url(../img/clippy.png) no-repeat 0 4px; }
-
 
 /* fork_me */
 .fork_me                          { position: absolute; top: 0; right: 0; display: block; width: 149px; height: 149px; background: url(../img/fork.png); }

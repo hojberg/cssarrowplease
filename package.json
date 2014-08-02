@@ -16,13 +16,22 @@
   ],
   "homepage": "http://cssarrowplease.com/",
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "build": "./node_modules/browserify/bin/cmd.js -e app/main.js -o public/js/cssarrowplease.js",
+    "test": "mocha --require=test/test_helper.js"
   },
   "dependencies": {
-    "connect": "~2.0.3"
+    "connect": "~2.0.3",
+    "browserify": "latest",
+    "jquery": "latest",
+    "jsdom": "latest",
+    "mocha": "latest",
+    "chai": "latest",
+    "sinon": "latest",
+    "sinon-chai": "latest"
   },
   "engines": {
-    "node": ">=0.6"
+    "node": ">=0.10"
   },
   "licenses": [
     {

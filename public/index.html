@@ -73,50 +73,30 @@
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cssarrowplease.com" data-text="Simple way to create CSS arrows for tooltips and the like" data-via="shojberg">Tweet</a>
     </footer>
 
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
-    <script src="js/vendor/jquery.clippy/jquery.clippy.min.js"></script>
     <script src="js/vendor/jscolor/jscolor.js"></script>
     <link rel="stylesheet" type="text/css" href="js/vendor/jscolor/jscolor.css">
 
-    <script src='js/lib/models/arrow.js'></script>
-    <script src='js/lib/views/arrow_configuration_view.js'></script>
-    <script src='js/lib/views/arrow_preview_view.js'></script>
-    <script src='js/lib/views/arrow_css_view.js'></script>
-    <script src='js/lib/app.js'></script>
-    <script>
-      $(document).ready(function () {
-        new CSSArrowPlease.App().render();
-      });
-    </script>
+    <script src='js/cssarrowplease.js'></script>
 
     <script>
+      // gajs
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-30519406-1']);
       _gaq.push(['_trackPageview']);
-
       (function() {
-        var defer = (function (document, script) {
-          var urls = [],
-              firstScript = document.getElementsByTagName(script)[0];
-
-          return function (url, callback) {
-            var inc;
-
-            if (url && $.inArray(url, urls) === -1) {
-              inc = document.createElement(script);
-              inc.async = true;
-              inc.src = url;
-              inc.onload = callback || function () {};
-              firstScript.parentNode.insertBefore(inc, firstScript);
-            }
-          }
-        }(document, 'script'));
-
-        window.onload = function () {
-          defer(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
-          defer('//platform.twitter.com/widgets.js');
-        };
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+      // twitter
+      window.twttr = (function (d, s, id) {
+        var t, js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id; js.src= "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+      }(document, "script", "twitter-wjs"));
     </script>
   </body>
 </html>

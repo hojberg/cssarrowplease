@@ -1,3 +1,0 @@
-describe("CSSArrowPlease.App", function() {
-
-});

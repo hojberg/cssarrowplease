@@ -1,32 +1,35 @@
-describe("CSSArrowPlease.Arrow", function () {
+var chai = require("chai");
+var sinon = require("sinon");
+var sinonChai = require("sinon-chai");
+var expect = chai.expect;
+chai.use(sinonChai);
+
+var $ = require('jquery');
+
+var Arrow = require('../app/models/arrow');
+
+describe("Arrow", function () {
 
   var arrow;
   beforeEach(function () {
-    arrow = new CSSArrowPlease.Arrow();
-
-    this.addMatchers({
-      toBeFunction: function () {
-        return typeof this.actual === 'function';
-      }
-    });
-    
+    arrow = new Arrow();
   });
-  
+
   describe('attributes', function () {
 
     it('has attributes', function () {
-      expect( CSSArrowPlease.Arrow.ATTRS ).toBeDefined();
+      expect( Arrow.ATTRS ).not.to.eql(undefined);
     });
 
     it('responds to getAttrs with all the attributes', function () {
-      expect( arrow.getAttrs ).toBeFunction();
-      expect( arrow.getAttrs() ).toBe(arrow._attributes);
+      expect( arrow.getAttrs ).to.be.a('function');
+      expect( arrow.getAttrs() ).to.eql(arrow._attributes);
     });
 
     describe('getters and setters', function () {
       it('has getters and setters', function () {
-        expect( arrow.get ).toBeFunction();
-        expect( arrow.set ).toBeFunction();
+        expect( arrow.get ).to.be.a('function');
+        expect( arrow.set ).to.be.a('function');
       });
     });
   });
@@ -40,35 +43,35 @@ describe("CSSArrowPlease.Arrow", function () {
     });
 
     it('has an "on" method', function () {
-      expect( arrow.on ).toBeFunction();
+      expect( arrow.on ).to.be.a('function');
     });
 
     it('delegates "on" to jQuery.on', function () {
-      spyOn($arrow, 'on');
+      var spy = sinon.spy($arrow, 'on');
 
       arrow.on('change', function () {});
 
-      expect($arrow.on).toHaveBeenCalled();
+      expect(spy).to.have.been.called;
     });
 
     it('has a "fire" method', function () {
-      expect( arrow.fire ).toBeFunction();
+      expect( arrow.fire ).to.be.a('function');
     });
-    
+
     it('delegates "fire" to jQuery.trigger', function () {
-      spyOn($arrow, 'trigger');
+      var spy = sinon.spy($arrow, 'trigger');
 
       arrow.fire('change');
 
-      expect($arrow.trigger).toHaveBeenCalled();
+      expect(spy).to.have.been.called;
     });
 
     it('fires a "change" event when setting attributes', function () {
-      spyOn(arrow, 'fire');
+      var spy = sinon.spy(arrow, 'fire');
 
       arrow.set('position', 'bottom');
 
-      expect(arrow.fire).toHaveBeenCalledWith('change');
+      expect(spy).to.have.been.calledWith('change');
     });
   });
 
@@ -76,22 +79,22 @@ describe("CSSArrowPlease.Arrow", function () {
 
     it('inverts "top"', function () {
       arrow.set('position', 'top');
-      expect( arrow.invertedPosition() ).toBe('bottom');
+      expect( arrow.invertedPosition() ).to.eql('bottom');
     });
 
     it('inverts "bottom"', function () {
       arrow.set('position', 'bottom');
-      expect( arrow.invertedPosition() ).toBe('top');
+      expect( arrow.invertedPosition() ).to.eql('top');
     });
 
     it('inverts "left"', function () {
       arrow.set('position', 'left');
-      expect( arrow.invertedPosition() ).toBe('right');
+      expect( arrow.invertedPosition() ).to.eql('right');
     });
 
     it('inverts "right"', function () {
       arrow.set('position', 'right');
-      expect( arrow.invertedPosition() ).toBe('left');
+      expect( arrow.invertedPosition() ).to.eql('left');
     });
 
   });
@@ -99,23 +102,23 @@ describe("CSSArrowPlease.Arrow", function () {
   describe('convert hex color to rgb color', function () {
 
     it('converts "#888"', function () {
-      expect( arrow.hexToRGB('#888') ).toEqual([136 , 136 , 136]);
+      expect( arrow.hexToRGB('#888') ).to.eql([136 , 136 , 136]);
     });
 
     it('converts "#88B7D5"', function () {
-      expect( arrow.hexToRGB('#88B7D5') ).toEqual([136, 183, 213]);
+      expect( arrow.hexToRGB('#88B7D5') ).to.eql([136, 183, 213]);
     });
 
     it('converts "#C2E1F5"', function () {
-      expect( arrow.hexToRGB('#C2E1F5') ).toEqual([194, 225, 245]);
+      expect( arrow.hexToRGB('#C2E1F5') ).to.eql([194, 225, 245]);
     });
 
     it('returns [0, 0, 0] if there is no input color', function () {
-      expect( arrow.hexToRGB() ).toEqual([0, 0, 0]);
+      expect( arrow.hexToRGB() ).to.eql([0, 0, 0]);
     });
 
     it('returns [0, 0, 0] if the input color is invalid', function () {
-      expect( arrow.hexToRGB('invalid') ).toEqual([0, 0, 0]);
+      expect( arrow.hexToRGB('invalid') ).to.eql([0, 0, 0]);
     });
 
   });
@@ -126,7 +129,7 @@ describe("CSSArrowPlease.Arrow", function () {
 
       it('is position: relative', function () {
         var css = arrow._baseCSS();
-        expect( css ).toMatch( 'position: relative' );
+        expect( css ).to.contain( 'position: relative' );
       });
 
       it('has base arrow css', function () {
@@ -141,13 +144,15 @@ describe("CSSArrowPlease.Arrow", function () {
         expected += '\twidth: 0;\n';
         expected += '\tposition: absolute;\n';
 
-        expect( css ).toMatch( expected );
+        expect( css ).to.contain( expected );
       });
 
       it('sets offset using invertedPosition', function () {
-        $.each(['top', 'right', 'bottom', 'left'], function (i, pos) {
-          arrow.set('position', pos)
-          expect( arrow._baseCSS() ).toMatch(arrow.invertedPosition() + ': 100%');
+        ['top', 'right', 'bottom', 'left'].forEach(function (pos, i) {
+          arrow.set('position', pos);
+          expect( arrow._baseCSS() ).to.contain(
+            arrow.invertedPosition() + ': 100%'
+          );
         });
       });
 
@@ -162,14 +167,14 @@ describe("CSSArrowPlease.Arrow", function () {
               expectedBackground  = 'background: ' + color,
               expectedBorder      = 'border: ' + borderWidth + 'px solid ' + borderColor;
 
-          expect( css ).toMatch( expectedBackground );
-          expect( css ).toMatch( expectedBorder);
+          expect( css ).to.contain( expectedBackground );
+          expect( css ).to.contain( expectedBorder);
         });
 
         it("targets both :before and :after", function () {
           var css = arrow._baseCSS();
-          expect( css ).toMatch(':before');
-          expect( css ).toMatch(':after');
+          expect( css ).to.contain(':before');
+          expect( css ).to.contain(':after');
         });
       });
 
@@ -184,13 +189,13 @@ describe("CSSArrowPlease.Arrow", function () {
               expectedBackground  = 'background: ' + color,
               expectedBorder      = 'border: ' + borderWidth + 'px solid ' + borderColor;
 
-          expect( css ).toMatch( expectedBackground );
-          expect( css ).not.toMatch( expectedBorder );
+          expect( css ).to.contain( expectedBackground );
+          expect( css ).not.to.contain( expectedBorder );
         });
 
         it("doesn't have :before", function () {
           var css = arrow._baseCSS();
-          expect( css ).not.toMatch(':before');
+          expect( css ).not.to.contain(':before');
         });
       });
     });
@@ -198,13 +203,13 @@ describe("CSSArrowPlease.Arrow", function () {
     describe('_arrowCSS', function () {
       it('it has the correct size', function () {
         var expected = 'border-width: 20px';
-        expect( arrow._arrowCSS('red', 20) ).toMatch( expected );
+        expect( arrow._arrowCSS('red', 20) ).to.contain( expected );
       });
 
       it('it has the correct color', function () {
         var css = arrow._arrowCSS('#888', 20);
-        expect( css ).toMatch( 'border-bottom-color: #888' );
-        expect( css ).toMatch( 'border-color: rgba\\(136, 136, 136, 0\\)' );
+        expect( css ).to.contain( 'border-bottom-color: #888' );
+        expect( css ).to.contain( 'border-color: rgba(136, 136, 136, 0)' );
       });
 
       describe('position top', function () {
@@ -213,8 +218,8 @@ describe("CSSArrowPlease.Arrow", function () {
         it('is centered', function () {
           var arrowcss = arrow._arrowCSS('red', 20),
               basecss = arrow._baseCSS();
-          expect( basecss ).toMatch( 'left: 50%' );
-          expect( arrowcss ).toMatch( 'margin-left: -20px' );
+          expect( basecss ).to.contain( 'left: 50%' );
+          expect( arrowcss ).to.contain( 'margin-left: -20px' );
         });
       });
 
@@ -224,8 +229,8 @@ describe("CSSArrowPlease.Arrow", function () {
         it('is centered', function () {
           var arrowcss = arrow._arrowCSS('red', 20),
               basecss = arrow._baseCSS();
-          expect( basecss ).toMatch( 'left: 50%' );
-          expect( arrowcss ).toMatch( 'margin-left: -20px' );
+          expect( basecss ).to.contain( 'left: 50%' );
+          expect( arrowcss ).to.contain( 'margin-left: -20px' );
         });
       });
 
@@ -235,8 +240,8 @@ describe("CSSArrowPlease.Arrow", function () {
         it('is centered', function () {
           var arrowcss = arrow._arrowCSS('red', 20),
               basecss = arrow._baseCSS();
-          expect( basecss ).toMatch( 'top: 50%' );
-          expect( arrowcss ).toMatch( 'margin-top: -20px' );
+          expect( basecss ).to.contain( 'top: 50%' );
+          expect( arrowcss ).to.contain( 'margin-top: -20px' );
         });
       });
 
@@ -246,8 +251,8 @@ describe("CSSArrowPlease.Arrow", function () {
         it('is centered', function () {
           var arrowcss = arrow._arrowCSS('red', 20),
               basecss = arrow._baseCSS();
-          expect( basecss ).toMatch( 'top: 50%' );
-          expect( arrowcss ).toMatch( 'margin-top: -20px' );
+          expect( basecss ).to.contain( 'top: 50%' );
+          expect( arrowcss ).to.contain( 'margin-top: -20px' );
         });
       });
 
@@ -255,11 +260,11 @@ describe("CSSArrowPlease.Arrow", function () {
 
     describe('_baseArrowCSS', function () {
       it('delegates to _arrowCSS', function () {
-        spyOn( arrow, '_arrowCSS' );
+        var spy = sinon.spy( arrow, '_arrowCSS' );
 
         arrow._baseArrowCSS();
 
-        expect( arrow._arrowCSS ).toHaveBeenCalledWith( 
+        expect( spy ).to.have.been.calledWith(
           arrow.get('color'),
           arrow.get('size'),
           'after'
@@ -269,18 +274,18 @@ describe("CSSArrowPlease.Arrow", function () {
 
     describe('_arrowBorderCSS', function () {
       it('delegates to _arrowCSS', function () {
-        spyOn( arrow, '_arrowCSS' );
+        var spy = sinon.spy( arrow, '_arrowCSS' );
 
         arrow._arrowBorderCSS();
 
-        expect( arrow._arrowCSS ).toHaveBeenCalledWith( 
+        expect( spy ).to.have.been.calledWith(
           arrow.get('borderColor'),
           arrow.get('size') + Math.round(arrow.get('borderWidth') * 1.41421356),
           'before'
         );
       });
     });
-    
+
     it('combines pieces', function () {
       var expected = [
         arrow._baseCSS(),
@@ -288,8 +293,9 @@ describe("CSSArrowPlease.Arrow", function () {
         arrow._arrowBorderCSS()
       ].join('\n');
 
-      expect( arrow.toCSS() ).toBe( expected );
+      expect( arrow.toCSS() ).to.eql( expected );
     });
+
 
   });
 

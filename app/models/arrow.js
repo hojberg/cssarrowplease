@@ -92,7 +92,7 @@ Arrow.prototype = {
     }
 
     css += '\tborder: solid transparent;\n';
-    css += '\tcontent: " ";\n';
+    css += '\tcontent: "";\n';
     css += '\theight: 0;\n';
     css += '\twidth: 0;\n';
     css += '\tposition: absolute;\n';

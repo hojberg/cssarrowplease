@@ -167,7 +167,7 @@ Arrow.prototype = {
     if (borderWidth > 0) {
       css = this._arrowCSS(
         this.get('borderColor'),
-        this.get('size') + Math.round(borderWidth * 1.41421356), // cos(PI/4) * 2
+        this.get('size') + Math.round(borderWidth * Math.sqrt(2)), // cos(PI/4) * 2
         'before'
       );
     }

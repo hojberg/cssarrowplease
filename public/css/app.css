@@ -12,7 +12,7 @@ input[type='radio']           { border: 0; }
 
 /* =LAYOUT
 ====================================================== */
-#content                      { width: 800px; margin: auto; padding: 100px; padding-bottom: 60px;
+#content                      { width: 800px; margin: auto; padding: 50px; padding-bottom: 60px;
   /* white radial gradient background */
   background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.5)), color-stop(70%,rgba(255,255,255,0)));
@@ -27,6 +27,8 @@ input[type='radio']           { border: 0; }
 .clr:after                    { clear:both; content:"."; display: block; height:0; visibility: hidden; line-height:0; font-size:0; }
 
 .ir                           { border: 0; font: 0/0 a; text-shadow: none; color: transparent; background-color: transparent; }
+
+.description                  { margin-bottom: 50px; font-size: 16px; text-align: center; }
 
 .preview_and_configuration    { float: left; width: 395px; }
 

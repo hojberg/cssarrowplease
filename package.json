@@ -10,28 +10,21 @@
     "type": "git",
     "url": "git://github.com/hojberg/cssarrowplease.git"
   },
-  "keywords": [
-    "nodeapps",
-    "helloworld"
-  ],
   "homepage": "http://cssarrowplease.com/",
   "scripts": {
-    "start": "node ./server.js",
-    "build": "./node_modules/browserify/bin/cmd.js -e app/main.js -o public/js/cssarrowplease.js",
+    "build": "browserify -e app/main.js -o public/js/cssarrowplease.js",
     "test": "mocha --require=test/test_helper.js"
   },
   "dependencies": {
-    "connect": "~2.0.3",
+    "jquery": "latest"
+  },
+  "devDependencies": {
     "browserify": "latest",
-    "jquery": "latest",
     "jsdom": "latest",
     "mocha": "latest",
     "chai": "latest",
     "sinon": "latest",
     "sinon-chai": "latest"
-  },
-  "engines": {
-    "node": ">=8.1.4"
   },
   "licenses": [
     {
@@ -39,8 +32,6 @@
       "url": "https://github.com/hojberg/cssarrowplease/raw/master/LICENSE"
     }
   ],
-  "analyze": false,
-  "optionalDependencies": {},
   "subdomain": "cssarrowplease",
   "domains": [
     "cssarrowplease.com",

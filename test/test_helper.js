@@ -1,5 +1,7 @@
 // dom setup
-var jsdom = require('jsdom');
-global.window = jsdom.jsdom().createWindow();
-var $ = require('jquery');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+global.window = new JSDOM("").window;
+const $ = require("jquery");
 global.$ = $(window);
